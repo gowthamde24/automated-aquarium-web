@@ -17,7 +17,7 @@ export default function Form({
     const formData = new FormData(event.currentTarget);
 
     try {
-      const response = await fetch("/automated-aquarium/api/send", {
+      const response = await fetch("/api/send", {
         method: "POST",
         body: formData,
       });

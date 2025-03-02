@@ -17,7 +17,7 @@ export default function Header() {
         {/* Website title with icon */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/automated-aquarium/main-icon.svg"
+            src="/main-icon.svg"
             alt="Main Icon"
             width={32}
             height={32}

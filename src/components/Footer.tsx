@@ -8,7 +8,7 @@ export default function Footer() {
         {new Date().getFullYear()} José Ramón Hoz<br></br>
         Version: {process.env.APP_VERSION} | commitHash:{" "}
         <Link
-          href={`https://github.com/Joserra13/automated-aquarium/tree/${process.env.COMMIT_HASH}`}
+          href={`https://github.com/Joserra13/automated-aquarium-web/tree/${process.env.COMMIT_HASH}`}
           className="underline text-blue-400"
           target="_blank"
         >

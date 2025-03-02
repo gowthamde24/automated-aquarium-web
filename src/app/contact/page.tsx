@@ -18,7 +18,7 @@ export default function Contact() {
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center rounded"
-          style={{ backgroundImage: "url('/automated-aquarium/contact.png')" }}
+          style={{ backgroundImage: "url('/contact.png')" }}
         />
 
         {/* Content Centered */}

@@ -6,7 +6,7 @@ export default function Home() {
       <div
         className="flex flex-col gap-4 items-center justify-center text-center sm:text-left"
         style={{
-          backgroundImage: "url('/automated-aquarium/welcomePicture.jpg')",
+          backgroundImage: "url('/welcomePicture.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           width: "100%",
@@ -26,7 +26,7 @@ export default function Home() {
         <div className="flex flex-col gap-4 items-center bg-transparent text-sm py-4 px-4 border border-blue-500 rounded-lg common-height common-width">
           <Image
             className="dark:invert"
-            src="/automated-aquarium/code.svg"
+            src="/code.svg"
             alt="code icon"
             width={100}
             height={100}
@@ -44,7 +44,7 @@ export default function Home() {
             >
               <Image
                 className="dark:invert"
-                src="/automated-aquarium/vercel.svg"
+                src="/vercel.svg"
                 alt="Vercel logomark"
                 width={20}
                 height={20}
@@ -64,7 +64,7 @@ export default function Home() {
         <div className="flex flex-col gap-4 items-center bg-transparent text-sm py-4 px-4 border border-blue-500 rounded-lg common-height common-width">
           <Image
             className="dark:invert"
-            src="/automated-aquarium/in-work.svg"
+            src="/in-work.svg"
             alt="In work icon"
             width={100}
             height={100}
@@ -82,7 +82,7 @@ export default function Home() {
             >
               <Image
                 className="dark:invert"
-                src="/automated-aquarium/vercel.svg"
+                src="/vercel.svg"
                 alt="Vercel logomark"
                 width={20}
                 height={20}
@@ -102,7 +102,7 @@ export default function Home() {
         <div className="flex flex-col gap-4 items-center bg-transparent text-sm py-4 px-4 border border-blue-500 rounded-lg common-height common-width">
           <Image
             className="dark:invert"
-            src="/automated-aquarium/share.svg"
+            src="/share.svg"
             alt="In work icon"
             width={100}
             height={100}
@@ -121,7 +121,7 @@ export default function Home() {
             >
               <Image
                 className="dark:invert"
-                src="/automated-aquarium/vercel.svg"
+                src="/vercel.svg"
                 alt="Vercel logomark"
                 width={20}
                 height={20}
