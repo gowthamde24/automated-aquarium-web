@@ -25,7 +25,7 @@ export default function Home() {
       <main className="flex flex-row gap-8 row-start-2 items-stretch sm:items-stretch mt-32 font-[family-name:var(--font-geist-mono)]">
         <div className="flex flex-col gap-4 items-center bg-transparent text-sm py-4 px-4 border border-blue-500 rounded-lg common-height common-width">
           <Image
-            className="dark:invert"
+            className="invert"
             src="/code.svg"
             alt="code icon"
             width={100}
@@ -43,11 +43,11 @@ export default function Home() {
               rel="noopener noreferrer"
             >
               <Image
-                className="dark:invert"
-                src="/vercel.svg"
-                alt="Vercel logomark"
-                width={20}
-                height={20}
+          className="dark:invert"
+          src="/vercel.svg"
+          alt="Vercel logomark"
+          width={20}
+          height={20}
               />
               Deploy now
             </a>
@@ -63,7 +63,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4 items-center bg-transparent text-sm py-4 px-4 border border-blue-500 rounded-lg common-height common-width">
           <Image
-            className="dark:invert"
+            className="invert"
             src="/in-work.svg"
             alt="In work icon"
             width={100}
@@ -101,7 +101,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4 items-center bg-transparent text-sm py-4 px-4 border border-blue-500 rounded-lg common-height common-width">
           <Image
-            className="dark:invert"
+            className="invert"
             src="/share.svg"
             alt="In work icon"
             width={100}
