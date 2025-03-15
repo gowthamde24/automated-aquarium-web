@@ -3,7 +3,7 @@ import { SocialIcons } from "@/components/Social-Icons";
 
 export default function About() {
   return (
-    <div className="flex flex-col items-center justify-center p-8 pb-20 gap-16 sm:p-20 pt-32 ml-16 mr-16">
+    <div className="flex flex-col items-center justify-center p-8 pb-20 gap-16 sm:pl-20 sm:pr-20 ml-16 mr-16">
       <div className="bg-[rgb(42,52,73)] w-full">
         <h1 className="text-4xl font-bold text-center mt-8">
           About the project
