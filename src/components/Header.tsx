@@ -105,11 +105,11 @@ export default function Header() {
                 Blog
               </Link>
             </li> */}
-            <li>
+            {/* <li>
               <Link href="/about" className="hover:text-gray-300">
                 About
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/contact" className="hover:text-gray-300">
                 Contact
