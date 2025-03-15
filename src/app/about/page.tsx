@@ -30,7 +30,7 @@ export default function About() {
               comprehensive documentation to assist users in setting up and
               maintaining their automated aquariums.
             </div>
-            <div className="flex flex-col items-center space-x-2">
+            <div className="flex flex-col items-center space-x-2 mb-8">
               <Image
                 src="/aboutProject.png"
                 alt="avatar"
