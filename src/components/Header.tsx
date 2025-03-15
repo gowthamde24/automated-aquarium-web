@@ -2,13 +2,17 @@
 "use client";
 // Import necessary modules
 import Link from "next/link";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import { useState } from "react";
+import { SocialIcons } from "./Social-Icons";
 
 // Define the Header component
 export default function Header() {
   const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
+
+  const handleNavItemClick = () => {
+    setIsMobileNavVisible(false);
+  };
 
   return (
     <header className="text-white py-4 sticky top-0 z-50 font-[family-name:var(--font-geist-sans)] bg-gray-900">
@@ -43,11 +47,11 @@ export default function Header() {
                 Blog
               </Link>
             </li> */}
-            {/* <li>
+            <li>
               <Link href="/about" className="hover:text-gray-300">
                 About
               </Link>
-            </li> */}
+            </li>
             <li>
               <Link href="/contact" className="hover:text-gray-300">
                 Contact
@@ -86,27 +90,27 @@ export default function Header() {
         >
           <ul className="flex flex-col gap-y-4 mt-4">
             <li>
-              <Link href="/" className="hover:text-gray-300">
+              <Link href="/" className="hover:text-gray-300" onClick={handleNavItemClick}>
                 Home
               </Link>
             </li>
+            <li>
+              <Link href="/about" className="hover:text-gray-300" onClick={handleNavItemClick}>
+                About
+              </Link>
+            </li>
             {/* <li>
-              <Link href="/streaming" className="hover:text-gray-300">
+              <Link href="/streaming" className="hover:text-gray-300" onClick={handleNavItemClick}>
                 Streaming
               </Link>
             </li> */}
-            {/* <li>
+            {/* 
               <Link href="/blog" className="hover:text-gray-300">
                 Blog
               </Link>
             </li> */}
-            {/* <li>
-              <Link href="/about" className="hover:text-gray-300">
-                About
-              </Link>
-            </li> */}
             <li>
-              <Link href="/contact" className="hover:text-gray-300">
+              <Link href="/contact" className="hover:text-gray-300" onClick={handleNavItemClick}>
                 Contact
               </Link>
             </li>
@@ -114,30 +118,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  );
-}
-
-// Define the SocialIcons component
-function SocialIcons() {
-  return (
-    <div className="flex gap-x-4">
-      {/* LinkedIn icon */}
-      <a
-        href="https://www.linkedin.com/in/jos%C3%A9-ram%C3%B3n-h-572a86234/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaLinkedin className="text-white hover:text-gray-300" />
-      </a>
-      {/* GitHub icon */}
-      <a
-        href="https://github.com/Joserra13/automated-aquarium"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaGithub className="text-white hover:text-gray-300" />
-      </a>
-      {/* Add more social media icons as needed */}
-    </div>
   );
 }

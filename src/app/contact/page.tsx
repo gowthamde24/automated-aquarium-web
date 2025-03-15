@@ -13,25 +13,28 @@ export default function Contact() {
   }, []);
 
   return (
-    <div className="flex grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-16 sm:p-20 pt-32 ml-16 mr-16">
-      <main className="flex-1 flex items-center justify-center relative h-[400px] sm:h-[500px]">
+    <div className="flex flex-col sm:flex-row items-center justify-items-center p-4 sm:p-8 pb-12 sm:pb-20 gap-8 sm:gap-16 pt-16 sm:pt-32">
+      {/* Hero Section with Background Image */}
+      <main className="w-full sm:w-1/2 flex items-center justify-center relative h-64 sm:h-[500px]">
         {/* Background Image */}
         <div
-          className="absolute inset-0 bg-cover bg-center rounded"
+          className="absolute inset-0 bg-cover bg-center rounded-lg"
           style={{ backgroundImage: "url('/contact.png')" }}
         />
 
         {/* Content Centered */}
         <div
-          className="relative z-10 text-white text-center p-8 rounded"
+          className="relative z-10 text-white text-center p-4 sm:p-8 rounded-lg"
           style={{ backgroundColor: "rgba(17, 24, 39, 0.75)" }}
         >
-          <h1 className="text-4xl font-semibold">Contact Us</h1>
+          <h1 className="text-2xl sm:text-4xl font-semibold">Contact Us</h1>
         </div>
       </main>
-      <main className="flex-1 flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="flex flex-col gap-4 items-center">
-          <h2 className="text-xl font-semibold">We'd love to hear from you!</h2>
+
+      {/* Form Section */}
+      <main className="w-full sm:w-1/2 flex-1 flex-col gap-4 sm:gap-8 items-center sm:items-start">
+        <div className="flex flex-col gap-4 items-center sm:items-center">
+          <h2 className="text-lg sm:text-xl font-semibold">We'd love to hear from you!</h2>
           {/* Show message based on state */}
           <h3
             className={`text-green-600 ${
