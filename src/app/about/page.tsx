@@ -3,14 +3,15 @@ import { SocialIcons } from "@/components/Social-Icons";
 
 export default function About() {
   return (
-    <div className="flex flex-col items-center justify-center p-8 pb-20 gap-16 sm:pl-20 sm:pr-20 ml-16 mr-16">
-      <div className="bg-[rgb(42,52,73)] w-full">
-        <h1 className="text-4xl font-bold text-center mt-8">
+    <div className="flex flex-col items-center justify-center p-4 sm:p-8 pb-12 sm:pb-20 gap-8 sm:gap-16">
+      {/* About the Project Section */}
+      <div className="bg-[rgb(42,52,73)] w-full rounded-lg">
+        <h1 className="text-2xl sm:text-4xl font-bold text-center mt-8">
           About the project
         </h1>
         <div className="divide-y divide-gray-200">
-          <div className="space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0 items-center">
-            <div className="prose prose-invert max-w-none pt-8 pb-8 xl:col-span-2 flex ml-10 text-justify">
+          <div className="flex flex-col xl:grid xl:grid-cols-3 xl:gap-x-8 items-center p-4 sm:p-8">
+            <div className="prose prose-invert max-w-none pt-8 pb-8 xl:col-span-2 text-justify">
               The Automated Aquarium project transforms a traditional aquarium
               into a smart IoT device, allowing users to monitor and control
               various aspects remotely.
@@ -30,23 +31,25 @@ export default function About() {
               comprehensive documentation to assist users in setting up and
               maintaining their automated aquariums.
             </div>
-            <div className="flex flex-col items-center space-x-2 mb-8">
+            <div className="flex flex-col items-center pt-8 pb-8">
               <Image
                 src="/aboutProject.png"
                 alt="avatar"
                 width={256}
                 height={256}
-                className="h-256 w-256 rounded-s"
+                className="h-48 w-48 sm:h-64 sm:w-64 rounded-lg"
               />
             </div>
           </div>
         </div>
       </div>
-      <div className="bg-[rgb(42,52,73)] w-full">
-        <h1 className="text-4xl font-bold text-center mt-8">About Me</h1>
+
+      {/* About Me Section */}
+      <div className="bg-[rgb(42,52,73)] w-full rounded-lg">
+        <h1 className="text-2xl sm:text-4xl font-bold text-center mt-8">About Me</h1>
         <div className="divide-y divide-gray-200">
-          <div className="space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0 items-center">
-            <div className="flex flex-col items-center space-x-2 pt-8 mb-8">
+          <div className="flex flex-col xl:grid xl:grid-cols-3 xl:gap-x-8 items-center p-4 sm:p-8">
+            <div className="flex flex-col items-center pt-8 pb-8">
               <Image
                 src="/aboutMe.png"
                 alt="avatar"
@@ -64,7 +67,7 @@ export default function About() {
                 <SocialIcons />
               </div>
             </div>
-            <div className="prose prose-invert max-w-none pt-8 pb-8 xl:col-span-2 flex mr-10 h-64 text-justify">
+            <div className="prose prose-invert max-w-none pt-8 pb-8 xl:col-span-2 text-justify">
               Joserra is a Software Engineer specializing in IoT and industrial
               automation. With a Master’s in IoT and experience at Siemens, he
               has worked extensively on full-stack software development, cloud
