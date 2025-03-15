@@ -31,3 +31,7 @@ body {
   justify-content: space-between;
   height: 100%;
 }
+
+.extra-space {
+  margin-bottom: 1rem; /* Adjust the value as needed */
+}
