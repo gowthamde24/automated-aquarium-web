@@ -14,8 +14,9 @@ export async function POST(request: Request){
         return NextResponse.json({ success: false, error: 'All fields are required' }, { status: 400 });
         }
 
-        const cetDate = new Date().toLocaleString('es-ES', { timeZone: 'CET' });
-        await sql`INSERT INTO contact (name, email, timestamp) VALUES (${firstName}, ${email}, ${cetDate})`;
+        const cetDate = new Date().toISOString();
+        const cetTime = new Date().toLocaleTimeString('es-ES', { hour12: false });
+        await sql`INSERT INTO contact (name, email, date, timestamp) VALUES (${firstName}, ${email}, ${cetDate}, ${cetTime})`;
     
         return NextResponse.json({ success: true });
     
