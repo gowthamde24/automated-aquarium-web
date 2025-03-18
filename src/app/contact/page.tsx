@@ -13,7 +13,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-items-center p-4 sm:p-8 pb-12 sm:pb-20 gap-8 sm:gap-16 pt-16 sm:pt-32">
+    <div className="flex flex-col sm:flex-row items-center justify-items-center p-4 sm:p-8 pb-12 sm:pb-20 gap-8 sm:gap-16 pt-16 sm:pt-32 px-32 sm:px-12 md:px-32">
       {/* Hero Section with Background Image */}
       <main className="w-full sm:w-1/2 flex items-center justify-center relative h-64 sm:h-[500px]">
         {/* Background Image */}
