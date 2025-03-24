@@ -7,7 +7,7 @@ export default function Home() {
       <div
         className="flex flex-col gap-4 items-center justify-center text-center w-full h-64 sm:h-96"
         style={{
-          backgroundImage: "url('/welcomePicture.jpg')",
+          backgroundImage: "url('/welcomePicture.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "30vh",

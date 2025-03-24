@@ -18,7 +18,7 @@ export default function About() {
             </div>
             <div className="flex flex-col items-center pt-8 pb-8">
               <Image
-                src="/aboutProject.png"
+                src="/aboutProject.webp"
                 alt="avatar"
                 width={256}
                 height={256}
@@ -36,7 +36,7 @@ export default function About() {
           <div className="flex flex-col xl:grid xl:grid-cols-3 xl:gap-x-8 items-center p-4 sm:p-8">
             <div className="flex flex-col items-center pt-8 pb-8">
               <Image
-                src="/aboutMe.png"
+                src="/aboutMe.webp"
                 alt="avatar"
                 width={192}
                 height={192}
