@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES2017",
     "lib": [
       "dom",
@@ -25,7 +26,8 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ]
+      ],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
   "include": [
@@ -34,7 +36,8 @@
     ".next/types/**/*.ts",
     "build/types/**/*.ts",
     "next-env.d.ts",
-    "dist/types/**/*.ts"
+    "dist/types/**/*.ts",
+    ".contentlayer/generated"
   ],
   "exclude": [
     "node_modules"

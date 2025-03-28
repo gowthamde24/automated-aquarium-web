@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 import pkg from './package.json';
-import createMDX from '@next/mdx'
+import { withContentlayer } from 'next-contentlayer'
 
 // starts a command line process to get the git hash
 import { execSync } from 'child_process';
@@ -20,10 +20,6 @@ const nextConfig: NextConfig = {
   },
   pageExtensions: ['md', 'mdx', 'ts', 'tsx'],
 };
-
-const withMDX = createMDX({
-  // Add markdown plugins here, as desired
-})
  
 // Merge MDX config with Next.js config
-export default withMDX(nextConfig)
+export default withContentlayer(nextConfig)
