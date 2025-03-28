@@ -7,13 +7,7 @@ import { getMDXComponent } from "next-contentlayer/hooks";
 
 function AboutContent(about: Post) {
   const Content = getMDXComponent(about.body.code);
-  return (
-    <div className="prose prose-invert max-w-none pt-8 pb-8 xl:col-span-2 text-justify">
-      <div className="prose prose-invert max-w-none pt-8 pb-8 xl:col-span-2 text-justify">
-        <Content />
-      </div>
-    </div>
-  );
+  return <Content />;
 }
 
 export default function About() {
