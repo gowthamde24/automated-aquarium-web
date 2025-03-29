@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import { SocialIcons } from "@/components/Social-Icons";
-import { allPosts, Post } from "contentlayer/generated";
+import { allAbouts, About } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 
-function AboutContent(about: Post) {
+function AboutContent(about: About) {
   const Content = getMDXComponent(about.body.code);
   return <Content />;
 }
 
-export default function About() {
-  const posts = allPosts.sort(
+export default function AboutPage() {
+  const posts = allAbouts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
