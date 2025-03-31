@@ -1,5 +1,5 @@
-// app/header.tsx
 "use client";
+
 // Import necessary modules
 import Link from "next/link";
 import Image from "next/image";
