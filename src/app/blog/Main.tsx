@@ -1,6 +1,14 @@
 import Link from "@/components/Link";
 import Tag from "@/components/Tag";
-import { formatDate } from "pliny/utils/formatDate";
+
+function formatDate(date: string, locale: string = 'en-US'): string {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }
+  return new Date(date).toLocaleDateString(locale, options)
+}
 
 const MAX_DISPLAY = 5;
 
