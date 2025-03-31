@@ -1,6 +1,28 @@
-import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import { defineDocumentType, ComputedFields, makeSource } from "contentlayer/source-files";
+// import {
+//   remarkExtractFrontmatter,
+//   remarkCodeTitles,
+//   remarkImgToJsx,
+//   extractTocHeadings,
+// } from 'pliny/mdx-plugins/index.js'
 
-const About = defineDocumentType(() => ({
+const computedFields: ComputedFields = {
+  slug: {
+    type: 'string',
+    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+  },
+  path: {
+    type: 'string',
+    resolve: (doc) => doc._raw.flattenedPath,
+  },
+  filePath: {
+    type: 'string',
+    resolve: (doc) => doc._raw.sourceFilePath,
+  },
+  // toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
+}
+
+export const About = defineDocumentType(() => ({
   name: "About",
   filePathPattern: `about/*.mdx`,
   contentType: "mdx",
@@ -17,7 +39,42 @@ const About = defineDocumentType(() => ({
   },
 }));
 
+export const Blog = defineDocumentType(() => ({
+  name: 'Blog',
+  filePathPattern: 'blog/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    tags: { type: 'list', of: { type: 'string' }, default: [] },
+    lastmod: { type: 'date' },
+    draft: { type: 'boolean' },
+    summary: { type: 'string' },
+    images: { type: 'json' },
+    authors: { type: 'list', of: { type: 'string' } },
+    layout: { type: 'string' },
+    bibliography: { type: 'string' },
+    canonicalUrl: { type: 'string' },
+  },
+  computedFields: {
+    ...computedFields,
+    structuredData: {
+      type: 'json',
+      resolve: (doc) => ({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: doc.title,
+        datePublished: doc.date,
+        dateModified: doc.lastmod || doc.date,
+        description: doc.summary,
+        // image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
+        // url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
+      }),
+    },
+  },
+}))
+
 export default makeSource({
   contentDirPath: "src/content",
-  documentTypes: [About],
+  documentTypes: [About, Blog],
 });
