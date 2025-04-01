@@ -1,10 +1,10 @@
 import { defineDocumentType, ComputedFields, makeSource } from "contentlayer/source-files";
-// import {
+import {
 //   remarkExtractFrontmatter,
 //   remarkCodeTitles,
 //   remarkImgToJsx,
-//   extractTocHeadings,
-// } from 'pliny/mdx-plugins/index.js'
+  extractTocHeadings,
+} from 'pliny/mdx-plugins/index.js'
 
 const computedFields: ComputedFields = {
   slug: {
@@ -19,7 +19,7 @@ const computedFields: ComputedFields = {
     type: 'string',
     resolve: (doc) => doc._raw.sourceFilePath,
   },
-  // toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
+  toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
 }
 
 export const About = defineDocumentType(() => ({
@@ -74,7 +74,23 @@ export const Blog = defineDocumentType(() => ({
   },
 }))
 
+export const Authors = defineDocumentType(() => ({
+  name: 'Authors',
+  filePathPattern: 'authors/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    name: { type: 'string', required: true },
+    avatar: { type: 'string' },
+    occupation: { type: 'string' },
+    company: { type: 'string' },
+    email: { type: 'string' },
+    linkedin: { type: 'string' },
+    github: { type: 'string' },
+  },
+  computedFields,
+}))
+
 export default makeSource({
   contentDirPath: "src/content",
-  documentTypes: [About, Blog],
+  documentTypes: [About, Blog, Authors],
 });
