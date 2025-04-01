@@ -1,37 +1,23 @@
-import {
-  sortPosts,
-  coreContent,
-  allCoreContent,
-} from "pliny/utils/contentlayer";
+import { sortPosts, coreContent, allCoreContent } from "pliny/utils/contentlayer";
 import { allBlogs, allAuthors } from "contentlayer/generated";
 import type { Authors, Blog } from "contentlayer/generated";
-// import PostSimple from '@/layouts/PostSimple'
 import PostLayout from "@/layouts/PostLayout";
-// import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getMDXComponent } from "next-contentlayer/hooks";
+import MDXContentRenderer from "@/components/MDXContentRenderer"; // Import the new component
 
 const defaultLayout = "PostLayout";
-const layouts = {
-  // PostSimple,
-  PostLayout,
-  // PostBanner,
-};
+const layouts = { PostLayout };
 
-export async function generateMetadata(props: {
-  params: Promise<{ slug: string[] }>;
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string[] };
 }): Promise<Metadata | undefined> {
-  const params = await props.params;
   const slug = decodeURI(params.slug.join("/"));
   const post = allBlogs.find((p) => p.slug === slug);
 
-  if (!post) {
-    return;
-  }
-
-  const publishedAt = new Date(post.date).toISOString();
-  const modifiedAt = new Date(post.lastmod || post.date).toISOString();
+  if (!post) return;
 
   return {
     title: post.title,
@@ -41,8 +27,8 @@ export async function generateMetadata(props: {
       description: post.summary,
       locale: "en_US",
       type: "article",
-      publishedTime: publishedAt,
-      modifiedTime: modifiedAt,
+      publishedTime: new Date(post.date).toISOString(),
+      modifiedTime: new Date(post.lastmod || post.date).toISOString(),
       url: "./",
     },
   };
@@ -50,55 +36,51 @@ export async function generateMetadata(props: {
 
 export const generateStaticParams = async () => {
   return allBlogs.map((p) => ({
-    slug: p.slug.split("/").map((name) => decodeURI(name)),
+    slug: p.slug.split("/").map(decodeURI),
   }));
 };
 
-export default async function Page(props: {
-  params: Promise<{ slug: string[] }>;
-}) {
-  const params = await props.params;
-  const slug = decodeURI(params.slug.join("/"));
-  // Filter out drafts in production
+// Fetch post data separately
+async function getPostData(slug: string) {
   const sortedCoreContents = allCoreContent(sortPosts(allBlogs));
   const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug);
-  if (postIndex === -1) {
-    return notFound();
-  }
+  if (postIndex === -1) return null;
 
-  const prev = sortedCoreContents[postIndex + 1];
-  const next = sortedCoreContents[postIndex - 1];
   const post = allBlogs.find((p) => p.slug === slug) as Blog;
-  const authorList = post?.authors || ["default"];
-  const authorDetails = authorList.map((author) => {
-    const authorResults = allAuthors.find((p) => p.slug === author);
-    return coreContent(authorResults as Authors);
-  });
-  const mainContent = coreContent(post);
-  const jsonLd = post.structuredData;
-  jsonLd["author"] = authorDetails.map((author) => {
-    return {
-      "@type": "Person",
-      name: author.name,
-    };
-  });
+  const prev = sortedCoreContents[postIndex + 1] || null;
+  const next = sortedCoreContents[postIndex - 1] || null;
+  const authorDetails = (post?.authors || ["default"]).map((author) =>
+    coreContent(allAuthors.find((p) => p.slug === author) as Authors)
+  );
 
+  return { post, prev, next, authorDetails };
+}
+
+export default async function Page({ params }: { params: { slug: string[] } }) {
+  const slug = decodeURI(params.slug.join("/"));
+  const postData = await getPostData(slug);
+
+  if (!postData) return notFound();
+
+  const { post, prev, next, authorDetails } = postData;
   const Layout = layouts[defaultLayout];
-  const Content = getMDXComponent(post.body.code);
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            ...post.structuredData,
+            author: authorDetails.map((author) => ({
+              "@type": "Person",
+              name: author.name,
+            })),
+          }),
+        }}
       />
-      <Layout
-        content={mainContent}
-        authorDetails={authorDetails}
-        next={next}
-        prev={prev}
-      >
-        
+      <Layout content={coreContent(post)} authorDetails={authorDetails} next={next} prev={prev}>
+        <MDXContentRenderer code={post.body.code} toc={post.toc} />
       </Layout>
     </>
   );
