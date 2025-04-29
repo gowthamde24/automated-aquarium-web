@@ -21,7 +21,7 @@ export default function PostMinimal({
   prev,
   children,
 }: LayoutProps) {
-  const { slug, title, images } = content;
+  const { /*slug,*/ title, images } = content;
   const displayImage =
     images && images.length > 0
       ? images[0]

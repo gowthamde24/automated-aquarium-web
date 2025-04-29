@@ -15,7 +15,7 @@ interface LayoutProps {
 }
 
 export default function PostSimple({ content, next, prev, children }: LayoutProps) {
-  const { path, slug, date, title } = content
+  const { /*path, slug,*/ date, title } = content
 
   return (
     <SectionContainer>
