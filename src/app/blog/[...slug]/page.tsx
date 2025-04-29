@@ -1,4 +1,8 @@
-import { sortPosts, coreContent, allCoreContent } from "pliny/utils/contentlayer";
+import {
+  sortPosts,
+  coreContent,
+  allCoreContent,
+} from "pliny/utils/contentlayer";
 import { allBlogs, allAuthors } from "contentlayer/generated";
 import type { Authors, Blog } from "contentlayer/generated";
 import PostLayout from "@/layouts/PostLayout";
@@ -14,7 +18,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string[] };
 }): Promise<Metadata | undefined> {
-  const slug = decodeURI(params.slug.join("/"));
+  const resolvedParams = await params;
+  const slug = decodeURI(resolvedParams.slug.join("/"));
   const post = allBlogs.find((p) => p.slug === slug);
 
   if (!post) return;
@@ -57,7 +62,8 @@ async function getPostData(slug: string) {
 }
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
-  const slug = decodeURI(params.slug.join("/"));
+  const resolvedParams = await params;
+  const slug = decodeURI(resolvedParams.slug.join("/"));
   const postData = await getPostData(slug);
 
   if (!postData) return notFound();
@@ -79,7 +85,12 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
           }),
         }}
       />
-      <Layout content={coreContent(post)} authorDetails={authorDetails} next={next} prev={prev}>
+      <Layout
+        content={coreContent(post)}
+        authorDetails={authorDetails}
+        next={next}
+        prev={prev}
+      >
         <MDXContentRenderer code={post.body.code} toc={post.toc} />
       </Layout>
     </>
