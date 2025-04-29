@@ -6,38 +6,11 @@ import {
 import { allBlogs, allAuthors } from "contentlayer/generated";
 import type { Authors, Blog } from "contentlayer/generated";
 import PostLayout from "@/layouts/PostLayout";
-import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MDXContentRenderer from "@/components/MDXContentRenderer"; // Import the new component
 
 const defaultLayout = "PostLayout";
 const layouts = { PostLayout };
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] };
-}): Promise<Metadata | undefined> {
-  const resolvedParams = await params;
-  const slug = decodeURI(resolvedParams.slug.join("/"));
-  const post = allBlogs.find((p) => p.slug === slug);
-
-  if (!post) return;
-
-  return {
-    title: post.title,
-    description: post.summary,
-    openGraph: {
-      title: post.title,
-      description: post.summary,
-      locale: "en_US",
-      type: "article",
-      publishedTime: new Date(post.date).toISOString(),
-      modifiedTime: new Date(post.lastmod || post.date).toISOString(),
-      url: "./",
-    },
-  };
-}
 
 export const generateStaticParams = async () => {
   return allBlogs.map((p) => ({
@@ -61,7 +34,11 @@ async function getPostData(slug: string) {
   return { post, prev, next, authorDetails };
 }
 
-export default async function Page({ params }: { params: { slug: string[] } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}) {
   const resolvedParams = await params;
   const slug = decodeURI(resolvedParams.slug.join("/"));
   const postData = await getPostData(slug);
