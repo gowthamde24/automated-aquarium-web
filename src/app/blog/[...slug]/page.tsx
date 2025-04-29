@@ -2,7 +2,7 @@ import {
   sortPosts,
   coreContent,
   allCoreContent,
-} from "pliny/utils/contentlayer";
+} from "pliny/utils/contentlayer.js";
 import { allBlogs, allAuthors } from "contentlayer/generated";
 import type { Authors, Blog } from "contentlayer/generated";
 import PostLayout from "@/layouts/PostLayout";
