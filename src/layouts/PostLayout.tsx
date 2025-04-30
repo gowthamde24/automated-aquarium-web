@@ -85,13 +85,7 @@ export default function PostLayout({
                   ))}
                 </ul>
               </dd>
-            </dl>
-            <div className="divide-y  xl:col-span-3 xl:row-span-2 xl:pb-0 divide-gray-700">
-              <div className="prose-invert max-w-none pt-10 pb-8">
-                {children}
-              </div>
-            </div>
-            <footer className="divide-y dark:divide-gray-700">
+              <dd>
               <div className="text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700 divide-y">
                 {tags && (
                   <div className="py-4 xl:py-8">
@@ -139,6 +133,15 @@ export default function PostLayout({
                   &larr; Back to the blog
                 </Link>
               </div>
+              </dd>
+            </dl>
+            <div className="divide-y  xl:col-span-3 xl:row-span-2 xl:pb-0 divide-gray-700 ml-16">
+              <div className="prose-invert max-w-none pt-10 pb-8">
+                {children}
+              </div>
+            </div>
+            <footer className="divide-y dark:divide-gray-700">
+              
             </footer>
           </div>
         </div>
