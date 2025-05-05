@@ -1,5 +1,5 @@
-// app/header.tsx
 "use client";
+
 // Import necessary modules
 import Link from "next/link";
 import Image from "next/image";
@@ -105,7 +105,7 @@ export default function Header() {
               </Link>
             </li> */}
             <li>
-              <Link href="/blog" className="hover:text-gray-300">
+              <Link href="/blog" className="hover:text-gray-300" onClick={handleNavItemClick}>
                 Blog
               </Link>
             </li>
