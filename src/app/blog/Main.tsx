@@ -15,7 +15,7 @@ const MAX_DISPLAY = 5;
 export default function Home({ posts }: any) {
   return (
     <div className="flex flex-col">
-      <div className="divide-y divide-gray-200 dark:divide-gray-700 md:px-8 md:mx-64">
+      <div className="divide-y divide-gray-200 dark:divide-gray-700 md:px-8 md:mx-64 w-full">
         <div className="pb-8 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
             Latest
@@ -63,7 +63,7 @@ export default function Home({ posts }: any) {
                       <div className="text-base leading-6 font-medium">
                         <Link
                           href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          className="text-cyan-500 hover:text-cyan-600"
                           aria-label={`Read more: "${title}"`}
                         >
                           Read more &rarr;
@@ -77,7 +77,7 @@ export default function Home({ posts }: any) {
           })}
         </ul>
       </div>
-      {posts.length > MAX_DISPLAY && (
+      {/* {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base leading-6 font-medium mt-6">
           <Link
             href="/blog"
@@ -87,7 +87,7 @@ export default function Home({ posts }: any) {
             All Posts &rarr;
           </Link>
         </div>
-      )}
+      )} */}
       {/* <div className="w-full mt-12">
         <div className="max-w-xl mx-auto px-6 py-8  rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
           <NewsletterForm />
