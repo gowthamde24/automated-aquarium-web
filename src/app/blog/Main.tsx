@@ -15,17 +15,17 @@ const MAX_DISPLAY = 5;
 export default function Home({ posts }: any) {
   return (
     <div className="flex flex-col">
-      <div className="divide-y divide-gray-200 dark:divide-gray-700 md:px-8 md:mx-64">
+      <div className="divide-y divide-gray-700 md:px-8 md:mx-64">
         <div className="pb-8 md:space-y-5 w-full">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
+          <h1 className="text-3xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 text-gray-100">
             Latest
           </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+          <p className="text-lg leading-7 text-gray-400">
             Stay updated with the latest updates about the Automated
             Aquarium.
           </p>
         </div>
-        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        <ul className="divide-y divide-gray-700">
           {!posts.length && "No posts found."}
           {posts.slice(0, MAX_DISPLAY).map((post: any) => {
             const { slug, date, title, summary, tags } = post;
@@ -35,7 +35,7 @@ export default function Home({ posts }: any) {
                   <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                     <dl>
                       <dt className="sr-only">Published on</dt>
-                      <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                      <dd className="text-base leading-6 font-medium text-gray-400">
                         <time dateTime={date}>{formatDate(date, "en-EN")}</time>
                       </dd>
                     </dl>
@@ -45,7 +45,7 @@ export default function Home({ posts }: any) {
                           <h2 className="text-2xl leading-8 font-bold tracking-tight">
                             <Link
                               href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
+                              className="text-gray-100"
                             >
                               {title}
                             </Link>
@@ -56,7 +56,7 @@ export default function Home({ posts }: any) {
                             ))}
                           </div>
                         </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                        <div className="prose max-w-none text-gray-400">
                           {summary}
                         </div>
                       </div>
@@ -89,7 +89,7 @@ export default function Home({ posts }: any) {
         </div>
       )} */}
       {/* <div className="w-full mt-12">
-        <div className="max-w-xl mx-auto px-6 py-8  rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+        <div className="max-w-xl mx-auto px-6 py-8  rounded-lg shadow-md border border-gray-700">
           <NewsletterForm />
         </div>
       </div> */}

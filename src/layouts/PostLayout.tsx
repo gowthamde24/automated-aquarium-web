@@ -37,13 +37,13 @@ export default function PostLayout({
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div className="xl:divide-y dark:divide-gray-700 xl:dark:divide-gray-700 divide-y">
+        <div className="xl:divide-y divide-gray-700 xl:divide-gray-700 divide-y">
           <header className="pt-6 xl:pb-6">
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                  <dd className="text-base leading-6 font-medium text-gray-400">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(
                         "en-EN",
@@ -58,8 +58,8 @@ export default function PostLayout({
               </div>
             </div>
           </header>
-          <div className="grid-rows-[auto_1fr] divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 dark:divide-gray-700">
-            <dl className="pt-6 pb-10 xl:border-b border-gray-200 xl:pt-11 dark:border-gray-700">
+          <div className="grid-rows-[auto_1fr] pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0 divide-gray-700">
+            <dl className="pt-6 pb-10 xl:border-b xl:pt-11 border-gray-700">
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-y-8 xl:space-x-0">
@@ -86,7 +86,7 @@ export default function PostLayout({
                 </ul>
               </dd>
               <dd>
-              <div className="text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2 xl:divide-y dark:divide-gray-700 divide-y">
+              <div className="text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2 xl:divide-y divide-gray-700 divide-y">
                 {tags && (
                   <div className="py-4 xl:py-8">
                     <h2 className="text-xs tracking-wide uppercase text-gray-400">
@@ -140,7 +140,7 @@ export default function PostLayout({
                 {children}
               </div>
             </div>
-            <footer className="divide-y dark:divide-gray-700">
+            <footer className="divide-y divide-gray-700">
               
             </footer>
           </div>
