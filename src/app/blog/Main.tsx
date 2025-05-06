@@ -1,13 +1,14 @@
 import Link from "@/components/Link";
 import Tag from "@/components/Tag";
+import NewsletterForm from "@/components/NewsletterForm";
 
-function formatDate(date: string, locale: string = 'en-US'): string {
+function formatDate(date: string, locale: string = "en-US"): string {
   const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }
-  return new Date(date).toLocaleDateString(locale, options)
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return new Date(date).toLocaleDateString(locale, options);
 }
 
 const MAX_DISPLAY = 5;
@@ -15,14 +16,13 @@ const MAX_DISPLAY = 5;
 export default function Home({ posts }: any) {
   return (
     <div className="flex flex-col">
-      <div className="divide-y divide-gray-700 md:px-8 md:mx-64">
-        <div className="pb-8 md:space-y-5 w-full">
+      <div className="divide-y divide-gray-700 md:px-8 md:mx-64 md:w-full">
+        <div className="pb-8 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 text-gray-100">
             Latest
           </h1>
           <p className="text-lg leading-7 text-gray-400">
-            Stay updated with the latest updates about the Automated
-            Aquarium.
+            Stay updated with the latest updates about the Automated Aquarium.
           </p>
         </div>
         <ul className="divide-y divide-gray-700">
@@ -76,11 +76,23 @@ export default function Home({ posts }: any) {
             );
           })}
         </ul>
+        {/* <div className="w-full mt-12 pt-12">
+          <div className="max-w-xl mx-auto px-6 py-8  rounded-lg shadow-md border border-gray-700">
+            <NewsletterForm
+              title="Subscribe to the Automated Aquarium Newsletter"
+              description="Get notified when new content is published. No spam, unsubscribe anytime."
+              buttonText="Subscribe"
+              errorMessage="An error occurred. Please try again."
+              successMessage="Thanks for subscribing!"
+              inputPlaceholder="Enter your email"
+            />
+          </div>
+        </div> */}
       </div>
       {/* {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base leading-6 font-medium mt-6">
           <Link
-            href="/blog"
+            href="/tags"
             className="text-cyan-500 hover:text-cyan-600"
             aria-label="All posts"
           >
@@ -88,11 +100,6 @@ export default function Home({ posts }: any) {
           </Link>
         </div>
       )} */}
-      {/* <div className="w-full mt-12">
-        <div className="max-w-xl mx-auto px-6 py-8  rounded-lg shadow-md border border-gray-700">
-          <NewsletterForm />
-        </div>
-      </div> */}
     </div>
   );
 }
