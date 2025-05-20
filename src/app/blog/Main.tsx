@@ -76,7 +76,7 @@ export default function Home({ posts }: any) {
             );
           })}
         </ul>
-        {/* <div className="w-full mt-12 pt-12">
+        <div className="w-full mt-12 pt-12">
           <div className="max-w-xl mx-auto px-6 py-8  rounded-lg shadow-md border border-gray-700">
             <NewsletterForm
               title="Subscribe to the Automated Aquarium Newsletter"
@@ -87,7 +87,7 @@ export default function Home({ posts }: any) {
               inputPlaceholder="Enter your email"
             />
           </div>
-        </div> */}
+        </div>
       </div>
       {/* {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base leading-6 font-medium mt-6">

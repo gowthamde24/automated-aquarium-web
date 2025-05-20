@@ -17,7 +17,7 @@ export default function Form({
     const formData = new FormData(event.currentTarget);
 
     try {
-      const response = await fetch("/api/send", {
+      const response = await fetch("/api/contact-email", {
         method: "POST",
         body: formData,
       });
@@ -36,7 +36,7 @@ export default function Form({
     }
 
     try{
-      await fetch("/api/store", {
+      await fetch("/api/store-email", {
         method: "POST",
         body: formData,
       });

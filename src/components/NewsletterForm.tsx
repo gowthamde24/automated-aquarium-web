@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 interface NewsletterFormProps {
   title?: string;
@@ -17,34 +17,38 @@ export default function NewsletterForm({
   buttonText = "Subscribe",
   errorMessage = "An error occurred. Please try again.",
   successMessage = "Thanks for subscribing!",
-  inputPlaceholder = "Enter your email"
+  inputPlaceholder = "Enter your email",
 }: NewsletterFormProps) {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorText, setErrorText] = useState(errorMessage);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('loading');
-    
-    // Replace this with your actual subscription logic
+    setStatus("loading");
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("email", email);
+
     try {
-      // Example API call
-      // const response = await fetch('/api/subscribe', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email }),
-      // });
-      
-      // if (!response.ok) throw new Error('Subscription failed');
-      
-      // Mock successful subscription for now
-      setTimeout(() => {
-        setStatus('success');
-        setEmail('');
-      }, 1000);
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        body: formData,
+      });      
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error("Subscription failed");
+      } else  {
+        setStatus("success");
+        setEmail("");
+      }
+
     } catch (error) {
-      setStatus('error');
+      setStatus("error");
       setErrorText(error instanceof Error ? error.message : errorMessage);
     }
   };
@@ -53,8 +57,8 @@ export default function NewsletterForm({
     <div className="flex flex-col items-center">
       <h3 className="text-xl font-bold text-gray-100 mb-2">{title}</h3>
       <p className="text-gray-400 text-center mb-4">{description}</p>
-      
-      {status === 'success' ? (
+
+      {status === "success" ? (
         <div className="text-green-500 font-medium py-2">{successMessage}</div>
       ) : (
         <form onSubmit={handleSubmit} className="w-full">
@@ -66,17 +70,17 @@ export default function NewsletterForm({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              disabled={status === 'loading'}
+              disabled={status === "loading"}
             />
             <button
               type="submit"
               className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 disabled:opacity-50"
-              disabled={status === 'loading'}
+              disabled={status === "loading"}
             >
-              {status === 'loading' ? 'Subscribing...' : buttonText}
+              {status === "loading" ? "Subscribing..." : buttonText}
             </button>
           </div>
-          {status === 'error' && (
+          {status === "error" && (
             <div className="text-red-500 text-sm mt-2">{errorText}</div>
           )}
         </form>
