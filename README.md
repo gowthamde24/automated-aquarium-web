@@ -1,4 +1,4 @@
-# Automated Aquarium Website
+# Automated Aquarium website
 
 ![AutomatedAquariumWebsite](./docs/graphics/AutomatedAquariumWebsite.jpg)
 
