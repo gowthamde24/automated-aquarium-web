@@ -1,0 +1,35 @@
+# .github/workflows/blog-notification.yml
+name: Blog Post Notification
+
+on:
+  push:
+    branches:
+      - main
+      - devBranch
+    paths:
+      - 'content/blog/**'
+
+jobs:
+  process-and-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2  # Need at least 2 commits to detect changes
+      
+      - name: Extract blog metadata
+        id: metadata
+        uses: ./.github/actions/extract-blog-metadata
+        with:
+          blog_directory: 'src/content/blog'
+      
+      # - name: Send notifications if new posts found
+      #   if: ${{ fromJson(steps.metadata.outputs.metadata)[0] }}
+      #   uses: ./.github/actions/send-blog-notifications
+      #   with:
+      #     blog_metadata: ${{ steps.metadata.outputs.metadata }}
+      #     database_url: ${{ secrets.DATABASE_URL }}
+      #     resend_api_key: ${{ secrets.RESEND_API_KEY }}
+      #     site_url: ${{ secrets.SITE_URL }}
+      #     batch_size: '50'
