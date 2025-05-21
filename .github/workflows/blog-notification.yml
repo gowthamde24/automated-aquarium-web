@@ -7,7 +7,7 @@ on:
       - main
       - devBranch
     paths:
-      - 'content/blog/**'
+      - 'src/content/blog/**'
 
 jobs:
   process-and-notify:
