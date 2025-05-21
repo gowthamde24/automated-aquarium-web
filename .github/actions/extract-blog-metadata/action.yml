@@ -14,7 +14,7 @@ outputs:
     description: 'JSON string containing extracted post metadata'
 
 runs:
-  using: 'node16' 
+  using: 'composite' 
   steps:
   - name: Install dependencies
     run: npm install
