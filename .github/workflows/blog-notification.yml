@@ -4,10 +4,10 @@ name: Blog Post Notification
 on:
   push:
     branches:
-      - main
+      # - main
       - devBranch
-    paths:
-      - 'src/content/blog/**'
+    # paths:
+      # - 'src/content/blog/**'
 
 jobs:
   process-and-notify:
