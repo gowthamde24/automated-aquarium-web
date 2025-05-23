@@ -22,12 +22,15 @@ export async function GET(req: NextRequest) {
   } else {
     try {
 
-      await sql`DELETE FROM subscribers WHERE email = ${email}`;
+      const result = await sql`DELETE FROM newsletter WHERE email = ${email}`;
+      if (result.count === 0) {
+        return NextResponse.redirect(new URL(`/unsubscribed`, req.url));
+      }
       // Redirect the user to an empty page with a success message
       return NextResponse.redirect(new URL(`/unsubscribed?email=${email}`, req.url));
 
     } catch (error) {
-      return NextResponse.redirect(new URL(`/unsubscribed?`, req.url));
+      return NextResponse.redirect(new URL(`/unsubscribed`, req.url));
     }
   }
 
