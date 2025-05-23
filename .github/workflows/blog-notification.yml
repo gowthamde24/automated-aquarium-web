@@ -24,9 +24,9 @@ jobs:
           blog_directory: 'src/content/blog'
 
       # Add this debug step
-      - name: Debug metadata
-        run: |
-          echo "Metadata output: ${{ steps.metadata.outputs.metadata }}"
+      # - name: Debug metadata
+      #   run: |
+      #     echo "Metadata output: ${{ steps.metadata.outputs.metadata }}"
       
       - name: Send notifications if new posts found
         if: ${{ steps.metadata.outputs.metadata != '[]' }}
