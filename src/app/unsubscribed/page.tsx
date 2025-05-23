@@ -1,15 +1,18 @@
 "use client";
 
-import { useSearchParams,  } from 'next/navigation';
+import React, { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-export default function UnsubscribedPage() {
-  
-  let isSuccess: string | boolean | null = false;
+function UnsubscribeMessage() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
-  try{
+  let isSuccess: string | boolean | null = false;
+
+  try {
     isSuccess = searchParams.get('success');
-  } catch (error) {}
+  } catch (error) {
+    console.warn("Error accessing search params", error);
+  }
 
   const isValidEmail = (email: string | null) => {
     if (!email) return false;
@@ -21,12 +24,19 @@ export default function UnsubscribedPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-      {/* <h1>Unsubscribed Successfully</h1> */}
       {isEmailValid && !isSuccess ? (
         <p>The email <strong>{email}</strong> has been successfully unsubscribed.</p>
       ) : (
         <p>Unsubscribed was not successful</p>
       )}
     </div>
+  );
+}
+
+export default function UnsubscribedPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <UnsubscribeMessage />
+    </Suspense>
   );
 }
