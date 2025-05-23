@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
-const glob = require('@actions/glob');
 const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');

@@ -22,7 +22,9 @@ runs:
     
   - name: Extract blog metadata
     id: extract
-    run: node ${{ github.action_path }}/index.js
+    run: 
+    - node ${{ github.action_path }}/index.js
+    - echo "metadata=${output}" >> $GITHUB_OUTPUT
     shell: bash
     env:
       INPUT_BLOG_DIRECTORY: ${{ inputs.blog_directory }}
