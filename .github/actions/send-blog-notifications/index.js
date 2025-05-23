@@ -47,7 +47,7 @@ async function main() {
 
     // Get all confirmed subscribers
     const result = await pool.query(
-      "SELECT id, email FROM subscribers WHERE confirmed = true"
+      "SELECT id, email FROM newsletter"
     );
     const subscribers = result.rows;
     console.log(`Found ${subscribers.length} confirmed subscribers`);
@@ -153,8 +153,9 @@ async function sendEmailAndLog(
 function createEmailTemplate(post, subscriber, siteUrl) {
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <h1 style="color: #333;">${post.title}</h1>
-      ${post.excerpt ? `<p style="color: #666;">${post.excerpt}</p>` : ""}
+      <h1 style="color: #333;">There is a new post at the Automated Aquarium blog</h1>
+      <h3 style="color: #333;">${post.title}</h1>
+      ${post.summary ? `<p style="color: #666;">${post.summary}</p>` : ""}
       <a href="${siteUrl}/blog/${post.slug}"
         style="display: inline-block; padding: 10px 20px;
               background-color: #007bff; color: white;
@@ -164,8 +165,8 @@ function createEmailTemplate(post, subscriber, siteUrl) {
       </a>
       <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
         <p style="font-size: 12px; color: #999;">
-          You received this email because you subscribed to updates from our blog.<br>
-          <a href="${siteUrl}/unsubscribe?email=${encodeURIComponent(subscriber.email)}"
+          You received this email because you subscribed to updates from the automated aquarium blog.<br>
+          <a href="${siteUrl}/api/unsubscribe?email=${encodeURIComponent(subscriber.email)}"
             style="color: #007bff; text-decoration: none;">
             Unsubscribe
           </a>
