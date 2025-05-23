@@ -1,31 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
+import postgres from 'postgres';
+
+const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const email = searchParams.get('email');
 
-  if (!email) {
-    return NextResponse.json(
-      { error: 'Email is required to unsubscribe.' },
-      { status: 400 }
-    );
+  const isValidEmail = (email: string | null) => {
+    if (!email) return false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const isEmailValid = isValidEmail(email);
+
+  if (!isEmailValid) {
+
+    return NextResponse.redirect(new URL(`/unsubscribed?`, req.url));
+
+  } else {
+    try {
+
+      await sql`DELETE FROM subscribers WHERE email = ${email}`;
+      // Redirect the user to an empty page with a success message
+      return NextResponse.redirect(new URL(`/unsubscribed?email=${email}`, req.url));
+
+    } catch (error) {
+      return NextResponse.redirect(new URL(`/unsubscribed?`, req.url));
+    }
   }
 
-  try {
-    // Simulate removing the email from the subscription list
-    // Replace this with your actual database or service logic
-    console.log(`Unsubscribing email: ${email}`);
 
-    // Respond with a success message
-    return NextResponse.json(
-      { message: `Successfully unsubscribed ${email}.` },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error('Error unsubscribing:', error);
-    return NextResponse.json(
-      { error: 'An error occurred while trying to unsubscribe.' },
-      { status: 500 }
-    );
-  }
 }

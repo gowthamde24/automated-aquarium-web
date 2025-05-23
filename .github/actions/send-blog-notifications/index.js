@@ -47,7 +47,7 @@ async function main() {
 
     // Get all confirmed subscribers
     const result = await pool.query(
-      "SELECT id, email FROM subscribers WHERE confirmed = true"
+      "SELECT id, email FROM newsletter"
     );
     const subscribers = result.rows;
     console.log(`Found ${subscribers.length} confirmed subscribers`);
