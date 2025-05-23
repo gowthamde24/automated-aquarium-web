@@ -22,6 +22,11 @@ jobs:
         uses: ./.github/actions/extract-blog-metadata
         with:
           blog_directory: 'src/content/blog'
+
+      # Add this debug step
+      - name: Debug metadata
+        run: |
+          echo "Metadata output: ${{ steps.metadata.outputs.metadata }}"
       
       - name: Send notifications if new posts found
         if: ${{ steps.metadata.outputs.metadata != '[]' }}
