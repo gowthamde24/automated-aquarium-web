@@ -24,7 +24,7 @@ jobs:
           blog_directory: 'src/content/blog'
       
       - name: Send notifications if new posts found
-        if: ${{ fromJson(steps.metadata.outputs.metadata)[0] }}
+        if: ${{ steps.metadata.outputs.metadata != '[]' }}
         uses: ./.github/actions/send-blog-notifications
         with:
           blog_metadata: ${{ steps.metadata.outputs.metadata }}
