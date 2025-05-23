@@ -1,4 +1,3 @@
-// .github/actions/extract-blog-metadata/index.js
 const core = require('@actions/core');
 const exec = require('@actions/exec');
 const glob = require('@actions/glob');

@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Extract metadata from blog posts",
   "main": "index.js",
-  "scripts": {
-    "install-act": "curl -s https://raw.githubusercontent.com/nektos/act/master/install.sh | bash"
-  },
   "keywords": [
     "github",
     "actions",

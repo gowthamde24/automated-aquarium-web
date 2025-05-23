@@ -1,4 +1,3 @@
-# .github/actions/extract-blog-metadata/action.yml
 name: 'Extract Blog Metadata'
 description: 'Extract metadata from Markdown/MDX blog posts'
 author: 'Joserra13'
